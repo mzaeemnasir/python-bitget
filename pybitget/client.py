@@ -1179,6 +1179,22 @@ class Client(object):
         else:
             logger.error("pls check args")
             return False
+        
+    def mix_cp_close_all_positions(self, productType):
+        """
+        Trader Close All Positions: https://bitgetlimited.github.io/apidoc/en/mix/#close-all-position
+        Limit
+        Limit rule: 1 times/1s (uid)
+        Required: productType
+        :return:
+        """
+        params = {}
+        if productType:
+            params["productType"] = productType
+            return self._request_with_params(POST, MIX_ORDER_V1_URL + '/close-all-positions', params)
+        else:
+            logger.error("pls check args")
+            return False
 
     def mix_cp_modify_tpsl(self, symbol, trackingNo, stopProfitPrice=None, stopLossPrice=None):
         """
